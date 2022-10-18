@@ -4,11 +4,10 @@ import DetailUrl from '@salesforce/schema/EntityDefinition.DetailUrl';
 
 export default class StudentBrowser extends LightningElement {
     // studenList = [];
+    @wire (getStudents,{instructorId:'$selectedInstructorId', courseDeliveryId:'$selectedDeliveryId'}) students;
     selectedDeliveryId = '';
     selectedInstructorId = '';
-    @wire (getStudents,{instructorId:'$selectedInstructorId', courseDeliveryId:'$selectedDeliveryId'}) students;
-    
-    handleFilterChnage(event){
+    handleFilterChange(event){
         this.selectedDeliveryId = event.detail.deliveryId;
         this.selectedInstructorId = event.detail.instructorId;
     }

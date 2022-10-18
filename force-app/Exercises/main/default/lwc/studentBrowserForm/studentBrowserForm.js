@@ -49,6 +49,7 @@ export default class StudentBrowserForm extends LightningElement {
     } 
 
     onDeliveryChange(event){
+        this.selectedDeliveryId = '';
         this.selectedDeliveryId = event.target.value;
         this.notifyParent();
     }
