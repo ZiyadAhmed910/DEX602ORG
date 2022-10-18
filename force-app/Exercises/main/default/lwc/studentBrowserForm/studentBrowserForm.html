@@ -10,7 +10,7 @@
                 </lightning-layout-item>
                 <lightning-layout-item padding="around_small" size="4">
                     <lightning-combobox label="Select Delivery" name="deliveries"
-                    options={deliveries} variant="label-hidden" value={selectedDeliveryId} >
+                    options={deliveries} variant="label-hidden" value={selectedDeliveryId} onchange={onDeliveryChange}>
                     </lightning-combobox>
                 </lightning-layout-item>
             </lightning-layout>
