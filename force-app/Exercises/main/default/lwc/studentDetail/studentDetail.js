@@ -13,7 +13,6 @@ import FIELD_Description from '@salesforce/schema/Contact.Description';
 const fields = [FIELD_Name, FIELD_Email,FIELD_Phone,FIELD_Description];
 export default class StudentDetail extends LightningElement {
 	
-	subscription;
 	// TODO #3: locate a valid Contact ID in your scratch org and store it in the studentId property.
 	// Example: studentId = '003S000001SBAXEIA5';
 	// studentId = '0038F00000FZrBAQA1';
@@ -36,7 +35,7 @@ export default class StudentDetail extends LightningElement {
     get description() {
 		return this._getDisplayValue(this.wiredStudent.data, FIELD_Description);
 	}
-
+	
 	//TODO #5: We provided a getter for the name field. 
 	// 		   To prepare for Lab 1, create getters for the description, phone, and email fields.
 	
@@ -55,6 +54,8 @@ export default class StudentDetail extends LightningElement {
 	_getDisplayValue(data, field) {
 		return getFieldDisplayValue(data, field) ? getFieldDisplayValue(data, field) : getFieldValue(data, field);
 	}
+	
+	subscription;
 	
 	@wire(MessageContext) messageContext;
 	connectedCallback() {
