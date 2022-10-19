@@ -20,11 +20,13 @@ export default class LayoutManager extends LightningElement {
 			this.viewMode = VIEW_TRIP_REPORTS;
 		} else if (selectedItemName === 'certpopularity') {
 			this.viewMode = VIEW_POPULARITY;
+            // console.log("Cert popular executed");
 		} else if (selectedItemName.indexOf('certification') !== -1) {
 			this.viewMode = VIEW_CERTIFICATION;
 			const selectedCertificationObj = selectedItemName.split('|');
 			this.certificationId = selectedCertificationObj[1];
 			this.certificationName = selectedCertificationObj[2];
+// console.log("Executing" + this.certificationId);
 		}
 	}
 
