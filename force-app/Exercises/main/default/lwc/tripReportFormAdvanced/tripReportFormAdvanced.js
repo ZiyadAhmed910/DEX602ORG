@@ -152,12 +152,14 @@ this.locationName;
 					this.recordId = tripReport.id;
 					// Utils.showToast(this,'Success', 'Trip Report Created', 'success');
 					alert("Trip Report Created");
+					this.returnToBrowseMode();
 				})
 				.catch(error => {
 					let errors = reduceErrors(error);
 					let errorBody = (errors.length) ? errors[0] : 'There was a problem creating your record.';
 					// Utils.showToast(this,'Error creating record', errorBody, 'error');
 					alert("Error creating record");
+					this.returnToBrowseMode();
 				});
 		} else {
 			
@@ -188,5 +190,18 @@ currentField.checkValidity());
 	onBlur() {
 		this.saveButtonDisabled = !this.validateFields();
 		}
+
+		returnToBrowseMode() {
+			const evt = new CustomEvent('tripreportmodechange', {
+			detail: {
+			mode: "browse"
+			},
+			});
+			this.dispatchEvent(evt);
+			}
+
+			onCancel() {
+				this.returnToBrowseMode();
+			}
 
 }
