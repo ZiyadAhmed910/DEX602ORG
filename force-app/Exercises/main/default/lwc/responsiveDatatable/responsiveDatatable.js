@@ -1,0 +1,71 @@
+import { LightningElement, api } from 'lwc';
+
+export default class ResponsiveDatatable extends LightningElement {
+
+	@api columnConfig;
+	@api pkField;
+	rows;
+
+	@api get rowData(){
+		return this.rows;		
+	}	
+
+	set rowData(value) {
+		if (typeof value !== "undefined") {
+		this.rows = this.reformatRows(value);
+		}
+	}
+
+	cols = [
+		{
+		fieldName:"Name",
+		label: "Name"
+		},
+		{
+		fieldName:"Title",
+		label: "Title",
+		hiddenOnMobile: true
+		},
+		{
+		fieldName:"Phone",
+		label: "Phone",
+		type: "phone"
+		},
+		{
+		fieldName:"Email",
+		label: "E-Mail",
+		type: "email"
+		}
+		];
+	
+	reformatRows = function(rowData) {
+		let colItems = this.columnConfig;
+		let reformattedRows = [];
+
+		for (let i = 0; i < rowData.length; i++) {
+			let rowDataItems = [];
+			for (let j = 0; j < colItems.length; j++) {
+				let colClass = '';
+				if (colItems[j].hiddenOnMobile) {
+					colClass = 'hiddenOnMobile';
+				}
+				rowDataItems.push({
+					value: rowData[i][colItems[j].fieldName],
+					label: colItems[j].label,
+					type: colItems[j].type,
+					class: colClass,
+					columnId: 'col' + j + '-' + rowData[i][this.pkField],
+					isPhone: (colItems[j].type==='phone'),
+					isEmail: (colItems[j].type==='email'),
+					isOther: (colItems[j].type!=='phone' && colItems[j].type!=='email')
+				});
+			}
+			reformattedRows.push({
+				data: rowDataItems,
+				pk: rowData[i][this.pkField]
+			});
+		}
+		return reformattedRows;
+	}
+
+}
