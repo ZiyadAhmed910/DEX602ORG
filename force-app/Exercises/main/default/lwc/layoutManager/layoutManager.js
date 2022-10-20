@@ -11,6 +11,14 @@ export default class LayoutManager extends LightningElement {
 	certificationName = '';
 	certificationId = 0;
 
+	loading=true;
+
+	handleLoading() {
+		this.loading = true;
+	}
+	handleDoneLoading() {
+		this.loading = false;
+	}
 	handleNavItemSelected(event) {
 		const selectedItemName = event.detail.itemName;
 		
