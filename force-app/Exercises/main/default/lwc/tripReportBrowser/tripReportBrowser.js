@@ -72,7 +72,9 @@ onBtnNewClick() {
 		handleRowDblClick() {
 		this.changeTripReportMode('edit');
 	}
-
+	onBtnEditClick() {
+		this.changeTripReportMode('edit');
+	}
 	
 
 }
